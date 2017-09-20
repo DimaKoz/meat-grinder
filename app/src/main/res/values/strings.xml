@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Native Root Checker</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="empty"/>
+
+    <string name="checks_desc_1">TEST KEYS</string>
+    <string name="checks_desc_2">DEV KEYS</string>
+    <string name="checks_desc_3">NON RELEASE KEYS</string>
+    <string name="checks_desc_4">DANGEROUS PROPS</string>
+    <string name="checks_desc_5">PERMISSIVE SELINUX(EXPERIMENTAL)</string>
+    <string name="checks_desc_6">SU EXISTS</string>
+    <string name="checks_desc_7">SUPERUSER APK</string>
+    <string name="checks_desc_8">SU BINARY</string>
+    <string name="checks_desc_9">BUSYBOX BINARY</string>
+    <string name="checks_desc_10">XPOSED(EXPERIMENTAL)</string>
+    <string name="checks_desc_11">RESETPROP(EXPERIMENTAL)</string>
+    <string name="checks_desc_12">WRONG PATH PERMITION</string>
+    <string name="checks_desc_13">HOOKS(EXPERIMENTAL)</string>
+
+</resources>
