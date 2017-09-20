@@ -62,6 +62,7 @@ public class MainActivity extends AppCompatActivity implements IChecksResultList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitleTextColor(getResources().getColor(R.color.brick));
         setSupportActionBar(toolbar);
         mProgress = findViewById(R.id.result_progress);
         mProgress.setVisibility(View.GONE);
@@ -87,8 +88,8 @@ public class MainActivity extends AppCompatActivity implements IChecksResultList
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
+        //getMenuInflater().inflate(R.menu.menu_main, menu);
+        return false;
     }
 
     @Override
