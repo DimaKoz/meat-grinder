@@ -23,6 +23,9 @@
 package com.kozhevin.rootchecks.ui;
 
 
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -48,8 +51,9 @@ import static com.kozhevin.rootchecks.constant.GeneralConst.CH_STATE_CHECKED_ROO
 import static com.kozhevin.rootchecks.constant.GeneralConst.CH_STATE_CHECKED_ROOT_NOT_DETECTED;
 import static com.kozhevin.rootchecks.constant.GeneralConst.CH_STATE_STILL_GOING;
 import static com.kozhevin.rootchecks.constant.GeneralConst.CH_STATE_UNCHECKED;
+import static com.kozhevin.rootchecks.constant.GeneralConst.GITHUB;
 
-public class MainActivity extends AppCompatActivity implements IChecksResultListener{
+public class MainActivity extends AppCompatActivity implements IChecksResultListener {
 
     private CheckTask mTask;
     private RecyclerView mList;
@@ -62,45 +66,49 @@ public class MainActivity extends AppCompatActivity implements IChecksResultList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitleTextColor(getResources().getColor(R.color.brick));
+        toolbar.setTitle("");
         setSupportActionBar(toolbar);
         mProgress = findViewById(R.id.result_progress);
         mProgress.setVisibility(View.GONE);
         mResultState = findViewById(R.id.result_image_view);
         mList = findViewById(R.id.list);
-        mList.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL, false));
+        mList.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         mList.setAdapter(new ResultAdapter());
         mFapMe = findViewById(R.id.fab);
         mFapMe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(mTask != null) {
+                if (mTask != null) {
                     mTask.cancel(false);
                 }
-                mTask = new CheckTask(MainActivity.this,false);
+                mTask = new CheckTask(MainActivity.this, false);
                 mTask.execute((Void[]) null);
             }
         });
-        mTask = new CheckTask(MainActivity.this,true);
+        mTask = new CheckTask(MainActivity.this, true);
         mTask.execute((Void[]) null);
+
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        //getMenuInflater().inflate(R.menu.menu_main, menu);
-        return false;
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_github) {
+            Intent i = new Intent(Intent.ACTION_VIEW);
+            i.setData(Uri.parse(GITHUB));
+            PackageManager manager = getPackageManager();
+            if (i.resolveActivity(manager) != null) {
+                startActivity(i);
+            }
             return true;
         }
 
@@ -116,20 +124,20 @@ public class MainActivity extends AppCompatActivity implements IChecksResultList
 
     @Override
     public void onUpdateResult(TotalResult result) {
-        if(result != null) {
+        if (result != null && mList.getAdapter() != null) {
             ((ResultAdapter) mList.getAdapter()).setData((ArrayList<CheckInfo>) result.getList());
         }
     }
 
     @Override
     public void onProcessFinished(TotalResult result) {
-        if(mTask != null) {
+        if (mTask != null) {
             mTask = null;
         }
         mProgress.setVisibility(View.GONE);
         mFapMe.show();
-        if(result != null) {
-            ((ResultAdapter)mList.getAdapter()).setData((ArrayList<CheckInfo>) result.getList());
+        if (result != null) {
+            ((ResultAdapter) mList.getAdapter()).setData((ArrayList<CheckInfo>) result.getList());
 
             switch (result.getCheckState()) {
 
@@ -151,7 +159,7 @@ public class MainActivity extends AppCompatActivity implements IChecksResultList
                     mResultState.setVisibility(View.INVISIBLE);
                     break;
 
-                case  CH_STATE_CHECKED_ERROR:
+                case CH_STATE_CHECKED_ERROR:
                     mResultState.setVisibility(View.INVISIBLE);
                     break;
 

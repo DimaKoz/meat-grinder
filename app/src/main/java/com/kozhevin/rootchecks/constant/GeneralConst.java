@@ -43,4 +43,6 @@ public class GeneralConst {
     final static public int CH_STATE_CHECKED_ROOT_DETECTED = 20;
     final static public int CH_STATE_CHECKED_ROOT_NOT_DETECTED = 30;
     final static public int CH_STATE_CHECKED_ERROR = 40;
+
+    final static public String GITHUB = "https://github.com/DimaKoz/meat-grinder";
 }

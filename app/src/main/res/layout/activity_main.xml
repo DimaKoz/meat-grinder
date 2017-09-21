@@ -17,7 +17,14 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay"/>
+            app:popupTheme="@style/AppTheme.PopupOverlay">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|left"
+                android:src="@drawable/native_root_checker"/>
+        </android.support.v7.widget.Toolbar>
 
     </android.support.design.widget.AppBarLayout>
 
@@ -30,11 +37,11 @@
         android:layout_gravity="bottom|end"
         android:layout_marginBottom="@dimen/fab_margin_bottom"
         android:layout_marginLeft="@dimen/fab_margin"
-        app:elevation="8dp"
         android:layout_marginRight="@dimen/fab_margin"
-        android:scaleType="centerCrop"
         android:layout_marginTop="@dimen/fab_margin"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_search"
         app:behavior_autoHide="false"
-        android:src="@drawable/ic_search"/>
+        app:elevation="8dp"/>
 
 </android.support.design.widget.CoordinatorLayout>
