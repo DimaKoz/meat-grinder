@@ -168,8 +168,10 @@ bool isFoundDangerousProps() {
     const char *BAD_DEBUGGABLE_VALUE = "1";
     const char *BAD_SECURE_VALUE = "0";
     const char *BAD_SYS_INITD_VALUE = "1";
+    const char *BAD_SERVICE_ADB_ROOT_VALUE = "1";
 
     bool result = isBadPropertyState(ANDROID_OS_DEBUGGABLE, BAD_DEBUGGABLE_VALUE, true, true) ||
+                  isBadPropertyState(SERVICE_ADB_ROOT, BAD_SERVICE_ADB_ROOT_VALUE, false, true) ||
                   isBadPropertyState(ANDROID_OS_SECURE, BAD_SECURE_VALUE, true, true) ||
                   isBadPropertyState(ANDROID_OS_SYS_INITD, BAD_SYS_INITD_VALUE, false, true);
 

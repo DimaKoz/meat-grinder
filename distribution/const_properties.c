@@ -70,3 +70,5 @@ const char *const ANDROID_OS_SECURE = "ro.secure";
 const char *const ANDROID_OS_DEBUGGABLE = "ro.debuggable";
 const char *const ANDROID_OS_SYS_INITD = "sys.initd";
 const char *const ANDROID_OS_BUILD_SELINUX = "ro.build.selinux";
+//see https://android.googlesource.com/platform/system/core/+/master/adb/services.cpp#86
+const char *const SERVICE_ADB_ROOT = "service.adb.root";

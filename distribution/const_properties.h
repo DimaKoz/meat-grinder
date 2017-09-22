@@ -55,5 +55,6 @@ extern const char *const ANDROID_OS_SECURE;
 extern const char *const ANDROID_OS_DEBUGGABLE;
 extern const char *const ANDROID_OS_SYS_INITD;
 extern const char *const ANDROID_OS_BUILD_SELINUX;
+extern const char *const SERVICE_ADB_ROOT;
 
 #endif //MEAT_GRINDER_CONST_PROPERTIES_H
