@@ -40,5 +40,12 @@
         android:layout_above="@id/result_group_view"
         android:background="@color/white_three"/>
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:layout_above="@id/result_group_view"
+        android:scaleType="fitXY"
+        android:src="@drawable/shadow"/>
+
 
 </RelativeLayout>
