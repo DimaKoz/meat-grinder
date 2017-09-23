@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.kozhevin.rootchecks.myapplication", appContext.getPackageName());
+        assertEquals("com.kozhevin.rootchecks", appContext.getPackageName());
     }
 }

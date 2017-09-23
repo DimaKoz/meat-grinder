@@ -1,4 +1,4 @@
-package com.kozhevin.rootchecks.myapplication;
+package com.kozhevin.rootchecks;
 
 import org.junit.Test;
 
