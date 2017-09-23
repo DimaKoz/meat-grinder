@@ -26,8 +26,7 @@ import android.support.annotation.NonNull;
 import com.kozhevin.rootchecks.BuildConfig;
 
 public class MeatGrinder {
-
-    private static final String TAG = MeatGrinder.class.getSimpleName();
+    
     private static Throwable sThrowableInit;
 
     static {

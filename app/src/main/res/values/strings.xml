@@ -13,7 +13,7 @@
     <string name="checks_desc_7">SUPERUSER APK</string>
     <string name="checks_desc_8">SU BINARY</string>
     <string name="checks_desc_9">BUSYBOX BINARY</string>
-    <string name="checks_desc_10">XPOSED(EXPERIMENTAL)</string>
+    <string name="checks_desc_10">XPOSED</string>
     <string name="checks_desc_11">RESETPROP(EXPERIMENTAL)</string>
     <string name="checks_desc_12">WRONG PATH PERMITION</string>
     <string name="checks_desc_13">HOOKS</string>
