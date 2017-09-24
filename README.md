@@ -1,3 +1,5 @@
+[![codecov](https://codecov.io/gh/DimaKoz/meat-grinder/branch/master/graph/badge.svg)](https://codecov.io/gh/DimaKoz/meat-grinder)
+
 # meat-grinder ![image](./app/src/main/res/mipmap-xhdpi/ic_launcher.png)
 A native root checker for Android devices and sample app.
 
