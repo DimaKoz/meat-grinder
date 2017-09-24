@@ -5,7 +5,10 @@ import android.support.test.runner.AndroidJUnit4;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.lang.reflect.Field;
+
 import static org.hamcrest.core.Is.is;
+import static org.hamcrest.core.Is.isA;
 import static org.junit.Assert.assertThat;
 
 /**
@@ -32,7 +35,15 @@ import static org.junit.Assert.assertThat;
 public class MeatGrinderTest {
     @Test
     public void isLibraryLoaded() throws Exception {
+        Field field = MeatGrinder.class.getDeclaredField("sThrowableInit");
+        field.setAccessible(true);
+        field.set(null, null);
         assertThat(MeatGrinder.getInstance().isLibraryLoaded(), is(true));
+        Field field1 = MeatGrinder.class.getDeclaredField("sThrowableInit");
+        field1.setAccessible(true);
+        field1.set(null, new Exception());
+        assertThat(MeatGrinder.getInstance().isLibraryLoaded(), is(false));
+        assertThat(MeatGrinder.getInstance().isDetectedDevKeys(), isA(Boolean.class));
     }
 
 }

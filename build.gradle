@@ -18,7 +18,7 @@ allprojects {
         compileSdkVersion = 26
         targetSdkVersion = 26
         buildToolsVersion = '26.0.1'
-        supportLibVersion = '26.1.0'  // variable that can be referenced to keep support libs consistent
+        supportLibVersion = '26.1.0'
     }
 }
 
