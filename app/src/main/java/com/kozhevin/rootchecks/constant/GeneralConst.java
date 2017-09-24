@@ -23,6 +23,10 @@ package com.kozhevin.rootchecks.constant;
 
 public class GeneralConst {
 
+    private GeneralConst(){
+
+    }
+
     final static public int CH_TYPE_UNKNOWN = 0;
     final static public int CH_TYPE_TEST_KEYS = 10;
     final static public int CH_TYPE_DEV_KEYS = 20;

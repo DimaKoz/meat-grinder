@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'jacoco-android'
 
 repositories {
     maven { url 'https://maven.google.com' }
@@ -48,5 +49,6 @@ dependencies {
     })
     compile "com.android.support:design:${project.ext.supportLibVersion}"
     testCompile 'junit:junit:4.12'
+    testCompile 'org.mockito:mockito-core:1.10.19'
 
 }

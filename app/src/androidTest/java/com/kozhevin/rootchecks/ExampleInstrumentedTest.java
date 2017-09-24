@@ -1,4 +1,4 @@
-package com.kozhevin.rootchecks.myapplication;
+package com.kozhevin.rootchecks;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
