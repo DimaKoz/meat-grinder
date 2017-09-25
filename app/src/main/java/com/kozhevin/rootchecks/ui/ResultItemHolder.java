@@ -1,8 +1,6 @@
 package com.kozhevin.rootchecks.ui;
 
 import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -13,12 +11,13 @@ import com.kozhevin.rootchecks.R;
 import com.kozhevin.rootchecks.data.CheckInfo;
 import com.kozhevin.rootchecks.util.ChecksHelper;
 
+import static com.kozhevin.rootchecks.util.ChecksHelper.getFound;
+import static com.kozhevin.rootchecks.util.ChecksHelper.getNonCheck;
+import static com.kozhevin.rootchecks.util.ChecksHelper.getOk;
+
 
 public class ResultItemHolder extends RecyclerView.ViewHolder {
 
-    private static Bitmap sNonCheck = null;
-    private static Bitmap sFound = null;
-    private static Bitmap sOk = null;
 
     private final TextView title;
     private final ImageView icon;
@@ -38,24 +37,14 @@ public class ResultItemHolder extends RecyclerView.ViewHolder {
         }
         mCheckInfo = checkInfo;
         Resources res = itemView.getResources();
-        if (sNonCheck == null || sNonCheck.isRecycled()) {
-            sNonCheck = BitmapFactory.decodeResource(res, R.drawable.ic_verified_grey);
-        }
-        if (sFound == null || sFound.isRecycled()) {
-            sFound = BitmapFactory.decodeResource(res, R.drawable.ic_verified_red);
-        }
-        if (sOk == null || sOk.isRecycled()) {
-            sOk = BitmapFactory.decodeResource(res, R.drawable.ic_verified_green);
-        }
-
         String desc = res.getString(ChecksHelper.getCheckStringId(mCheckInfo.getTypeCheck()));
         title.setText(desc);
         if (mCheckInfo.getState() == null) {
-            icon.setImageBitmap(sNonCheck);
+            icon.setImageBitmap(getNonCheck(itemView.getContext()));
         } else if (mCheckInfo.getState() == Boolean.TRUE) {
-            icon.setImageBitmap(sFound);
+            icon.setImageBitmap(getFound(itemView.getContext()));
         } else {
-            icon.setImageBitmap(sOk);
+            icon.setImageBitmap(getOk(itemView.getContext()));
         }
 
     }

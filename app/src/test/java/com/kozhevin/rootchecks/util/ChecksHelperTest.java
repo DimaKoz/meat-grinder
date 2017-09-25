@@ -25,6 +25,7 @@ import static com.kozhevin.rootchecks.constant.GeneralConst.CH_TYPE_XPOSED;
 import static com.kozhevin.rootchecks.util.ChecksHelper.getCheckStringId;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.Is.isA;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
@@ -78,6 +79,7 @@ public class ChecksHelperTest {
         assertThat(getCheckStringId(CH_TYPE_WRONG_PATH_PERMITION), is(R.string.checks_desc_12));
         assertThat(getCheckStringId(CH_TYPE_HOOKS), is(R.string.checks_desc_13));
         assertThat(getCheckStringId(CH_TYPE_UNKNOWN), is(R.string.empty));
+        assertEquals(getCheckStringId(CH_TYPE_UNKNOWN), R.string.empty);
         //noinspection WrongConstant
         assertThat(getCheckStringId(Integer.MAX_VALUE), is(R.string.empty));
 

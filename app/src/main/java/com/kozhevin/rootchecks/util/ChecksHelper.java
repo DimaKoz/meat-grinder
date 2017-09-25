@@ -1,5 +1,9 @@
 package com.kozhevin.rootchecks.util;
 
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
 
 import com.kozhevin.rootchecks.R;
@@ -42,6 +46,12 @@ import static com.kozhevin.rootchecks.constant.GeneralConst.CH_TYPE_XPOSED;
  */
 
 public class ChecksHelper {
+
+    private static Bitmap sNonCheck = null;
+    private static Bitmap sFound = null;
+    private static Bitmap sOk = null;
+
+
     private ChecksHelper() {
     }
 
@@ -106,5 +116,26 @@ public class ChecksHelper {
                 result = R.string.empty;
         }
         return result;
+    }
+
+    public static Bitmap getNonCheck(@NonNull Context pContext) {
+        if (sNonCheck == null || sNonCheck.isRecycled()) {
+            sNonCheck = BitmapFactory.decodeResource(pContext.getResources(), R.drawable.ic_verified_grey);
+        }
+        return sNonCheck;
+    }
+
+    public static Bitmap getFound(@NonNull Context pContext) {
+        if (sFound == null || sFound.isRecycled()) {
+            sFound = BitmapFactory.decodeResource(pContext.getResources(), R.drawable.ic_verified_red);
+        }
+        return sFound;
+    }
+
+    public static Bitmap getOk(@NonNull Context pContext) {
+        if (sOk == null || sOk.isRecycled()) {
+            sOk = BitmapFactory.decodeResource(pContext.getResources(), R.drawable.ic_verified_green);
+        }
+        return sOk;
     }
 }
