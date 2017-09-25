@@ -26,27 +26,30 @@ import android.support.annotation.NonNull;
 import com.kozhevin.rootchecks.BuildConfig;
 
 public class MeatGrinder {
-    
-    private static Throwable sThrowableInit;
-
-    static {
-        try {
-            System.loadLibrary("native-lib");
-            sThrowableInit = null;
-        } catch (UnsatisfiedLinkError e) {
-            if (BuildConfig.DEBUG) {
-                e.printStackTrace();
-            }
-            sThrowableInit = e;
-        }
-    }
+    private final static String LIB_NAME = "native-lib";
+    private static boolean isLoaded;
+    private static boolean isUnderTest = false;
 
     private MeatGrinder() {
 
     }
 
     public boolean isLibraryLoaded() {
-        return sThrowableInit == null;
+        if (isLoaded) {
+            return true;
+        }
+        try {
+            if(isUnderTest) {
+                throw new UnsatisfiedLinkError("under test");
+            }
+            System.loadLibrary(LIB_NAME);
+            isLoaded = true;
+        } catch (UnsatisfiedLinkError e) {
+            if (BuildConfig.DEBUG) {
+                e.printStackTrace();
+            }
+        }
+        return isLoaded;
     }
 
     public native boolean isDetectedDevKeys();

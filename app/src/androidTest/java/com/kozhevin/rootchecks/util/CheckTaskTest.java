@@ -200,9 +200,12 @@ public class CheckTaskTest {
                 mLatch3.countDown();
             }
         };
-        Field field = MeatGrinder.class.getDeclaredField("sThrowableInit");
+        Field field = MeatGrinder.class.getDeclaredField("isUnderTest");
         field.setAccessible(true);
-        field.set(null, new Exception());
+        field.set(null, true);
+        Field field0 = MeatGrinder.class.getDeclaredField("isLoaded");
+        field0.setAccessible(true);
+        field0.set(null, false);
         CheckTask mTask = new CheckTask(listener, false);
         mTask.execute((Void[]) null);
         mLatch3.await();

@@ -8,7 +8,6 @@ import org.junit.runner.RunWith;
 import java.lang.reflect.Field;
 
 import static org.hamcrest.core.Is.is;
-import static org.hamcrest.core.Is.isA;
 import static org.junit.Assert.assertThat;
 
 /**
@@ -34,16 +33,16 @@ import static org.junit.Assert.assertThat;
 @RunWith(AndroidJUnit4.class)
 public class MeatGrinderTest {
     @Test
-    public void isLibraryLoaded() throws Exception {
-        Field field = MeatGrinder.class.getDeclaredField("sThrowableInit");
+    public void testTryCatch() throws Exception {
+        Field field0 = MeatGrinder.class.getDeclaredField("isLoaded");
+        field0.setAccessible(true);
+        field0.set(null, false);
+        Field field = MeatGrinder.class.getDeclaredField("isUnderTest");
         field.setAccessible(true);
-        field.set(null, null);
-        assertThat(MeatGrinder.getInstance().isLibraryLoaded(), is(true));
-        Field field1 = MeatGrinder.class.getDeclaredField("sThrowableInit");
-        field1.setAccessible(true);
-        field1.set(null, new Exception());
+        field.set(null, true);
         assertThat(MeatGrinder.getInstance().isLibraryLoaded(), is(false));
-        assertThat(MeatGrinder.getInstance().isDetectedDevKeys(), isA(Boolean.class));
+        field.set(null, false);
+        assertThat(MeatGrinder.getInstance().isLibraryLoaded(), is(true));
     }
 
 }
