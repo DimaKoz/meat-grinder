@@ -3,7 +3,7 @@
 # meat-grinder ![image](./app/src/main/res/mipmap-xhdpi/ic_launcher.png)
 A native root checker for Android devices and sample app.
 
-Remeber! Detecting and hiding root are a cat and mouse game.
+Remember! Detecting and hiding root are a cat and mouse game.
 
 # Root checks
 
@@ -29,7 +29,7 @@ Note that sometimes the `bool isFoundBusyboxBinary()` method can return a false 
 This is cause the manufacturer of the device rom has left the busybox binary.
 This alone doesn't mean that the device is rooted.
 
-The following devices are known the have the busybox binary present on the stock rom:
+The following devices are known have the busybox binary on the stock rom:
 * Part of the OnePlus Devices
 * Part of the Xiaomi Devices
 

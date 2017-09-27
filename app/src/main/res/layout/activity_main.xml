@@ -40,7 +40,7 @@
         android:layout_marginRight="@dimen/fab_margin"
         android:layout_marginTop="@dimen/fab_margin"
         android:scaleType="centerCrop"
-        android:src="@drawable/ic_search"
+        android:src="@drawable/root"
         app:behavior_autoHide="false"
         app:elevation="8dp"/>
 
