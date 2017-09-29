@@ -8,7 +8,7 @@
     <string name="checks_desc_2">DEV KEYS</string>
     <string name="checks_desc_3">NON RELEASE KEYS</string>
     <string name="checks_desc_4">DANGEROUS PROPS</string>
-    <string name="checks_desc_5">PERMISSIVE SELINUX(EXPERIMENTAL)</string>
+    <string name="checks_desc_5">PERMISSIVE SELINUX</string>
     <string name="checks_desc_6">SU EXISTS</string>
     <string name="checks_desc_7">SUPERUSER APK</string>
     <string name="checks_desc_8">SU BINARY</string>
