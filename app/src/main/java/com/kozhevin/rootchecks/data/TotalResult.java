@@ -1,6 +1,6 @@
 package com.kozhevin.rootchecks.data;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.kozhevin.rootchecks.annotation.CheckingState;
 
