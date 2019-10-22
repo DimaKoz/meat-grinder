@@ -3,8 +3,8 @@ package com.kozhevin.rootchecks.util;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.support.annotation.NonNull;
-import android.support.annotation.StringRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.StringRes;
 
 import com.kozhevin.rootchecks.R;
 import com.kozhevin.rootchecks.annotation.CheckingMethodType;

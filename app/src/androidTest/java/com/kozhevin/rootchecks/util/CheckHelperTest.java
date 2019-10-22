@@ -2,8 +2,8 @@ package com.kozhevin.rootchecks.util;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.support.test.rule.ActivityTestRule;
-import android.support.test.runner.AndroidJUnit4;
+import androidx.test.rule.ActivityTestRule;
+import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import com.kozhevin.rootchecks.ui.MainActivity;
 

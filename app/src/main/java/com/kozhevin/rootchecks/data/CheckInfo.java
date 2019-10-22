@@ -1,6 +1,6 @@
 package com.kozhevin.rootchecks.data;
 
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 import com.kozhevin.rootchecks.annotation.CheckingMethodType;
 

@@ -21,7 +21,7 @@ package com.kozhevin.rootchecks.util;
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.kozhevin.rootchecks.BuildConfig;
 
