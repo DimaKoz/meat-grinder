@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="white_three">#ffffffff</color>
+    <color name="halfwhite">#fff5f5f5</color>
+    <color name="white_two">#ffe0e0e0</color>
+    <color name="brick">#ffb71c1c</color>
+    <color name="colorPrimary">@color/halfwhite</color>
+    <color name="colorPrimaryDark">@color/white_two</color>
+    <color name="colorAccent">@color/brick</color>
+    <color name="black_87">#de000000</color>
+</resources>

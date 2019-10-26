@@ -1,7 +1,10 @@
 [![codecov](https://codecov.io/gh/DimaKoz/meat-grinder/branch/master/graph/badge.svg)](https://codecov.io/gh/DimaKoz/meat-grinder)
 
 # meat-grinder ![image](./app/src/main/res/mipmap-xhdpi/ic_launcher.png)
-A native root checker for Android devices and sample app.
+A native root checker for Android devices written in c language.
+
+The project contains two sample applications. 
+One of them is written in Java, the other in Kotlin.
 
 Remember! Detecting and hiding root are a cat and mouse game.
 
