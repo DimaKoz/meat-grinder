@@ -287,10 +287,12 @@ bool isFoundHooks() {
     memset(line, 0, line_size);
     const char *substrate = "com.saurik.substrate";
     const char *xposed = "XposedBridge.jar";
+    const char *edxposed = "edxp.jar";
     while (fgets(line, line_size, fp) != NULL) {
         const size_t real_line_size = strlen(line);
         if ((real_line_size >= strlen(substrate) && strstr(line, substrate) != NULL) ||
-            (real_line_size >= strlen(xposed) && strstr(line, xposed) != NULL)) {
+            (real_line_size >= strlen(xposed) && strstr(line, xposed) != NULL) ||
+            (real_line_size >= strlen(edxposed) && strstr(line, edxposed) != NULL)) {
             GR_LOGI("found in [%s]: [%s]", maps_file_name, line);
             result = true;
             break;

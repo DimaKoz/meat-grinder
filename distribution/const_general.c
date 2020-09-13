@@ -55,6 +55,13 @@ const char * const MG_EXPOSED_FILES[] = {
         "/magisk/xposed/system/lib/libart-compiler.so",
         "/system/bin/app_process32_orig",
         "/system/bin/app_process64_orig",
+        "/system/lib/libmemtrack_real.so",
+        "/system/lib64/libmemtrack_real.so",
+        "/system/lib/libriru_edxp.so",
+        "/system/lib64/libriru_edxp.so",
+        "/system/lib/libwhale.edxp.so",
+        "/system/lib64/libwhale.edxp.so",
+        "/system/framework/edxp.jar",
         0
 };
 
