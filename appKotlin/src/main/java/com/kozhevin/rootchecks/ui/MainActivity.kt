@@ -1,6 +1,5 @@
 package com.kozhevin.rootchecks.ui
 
-
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -28,11 +27,10 @@ import com.kozhevin.rootchecks.util.IChecksResultListener
 import java.util.*
 
 class MainActivity : AppCompatActivity(), IChecksResultListener {
-
     private var mTask: CheckTask? = null
     private var mList: RecyclerView? = null
     private var mResultState: ImageView? = null
-    private var mFapMe: FloatingActionButton? = null // I'm so sorry ;)
+    private var mFab: FloatingActionButton? = null
     private var mProgress: ProgressBar? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,11 +45,9 @@ class MainActivity : AppCompatActivity(), IChecksResultListener {
         mList = findViewById(R.id.list)
         mList!!.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         mList!!.adapter = ResultAdapter()
-        mFapMe = findViewById(R.id.fab)
-        mFapMe!!.setOnClickListener {
-            if (mTask != null) {
-                mTask!!.cancel(false)
-            }
+        mFab = findViewById(R.id.fab)
+        mFab!!.setOnClickListener {
+            mTask?.cancel(false)
             mTask = CheckTask(this@MainActivity, false)
             mTask!!.execute()
         }
@@ -61,31 +57,23 @@ class MainActivity : AppCompatActivity(), IChecksResultListener {
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_main, menu)
         return true
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val id = item.itemId
-
-
-        if (id == R.id.action_github) {
-            val i = Intent(Intent.ACTION_VIEW)
-            i.data = Uri.parse(GITHUB)
-            val manager = packageManager
-            if (i.resolveActivity(manager) != null) {
-                startActivity(i)
-            }
-            return true
+    override fun onOptionsItemSelected(item: MenuItem): Boolean = if (item.itemId == R.id.action_github) {
+        val i = Intent(Intent.ACTION_VIEW, Uri.parse(GITHUB))
+        if (i.resolveActivity(packageManager) != null) {
+            startActivity(i)
         }
-
-        return super.onOptionsItemSelected(item)
+        true
+    } else {
+        super.onOptionsItemSelected(item)
     }
 
     override fun onProcessStarted() {
         mResultState!!.visibility = View.INVISIBLE
-        mFapMe!!.hide()
+        mFab!!.hide()
         mProgress!!.visibility = View.VISIBLE
     }
 
@@ -100,31 +88,21 @@ class MainActivity : AppCompatActivity(), IChecksResultListener {
             mTask = null
         }
         mProgress!!.visibility = View.GONE
-        mFapMe!!.show()
-
+        mFab!!.show()
         (mList!!.adapter as ResultAdapter).setData(result.list as ArrayList<CheckInfo>)
-
         when (result.checkState) {
-
             CH_STATE_CHECKED_ROOT_DETECTED -> {
                 mResultState!!.visibility = View.VISIBLE
                 mResultState!!.setImageResource(R.drawable.ic_rooted)
             }
-
             CH_STATE_CHECKED_ROOT_NOT_DETECTED -> {
                 mResultState!!.visibility = View.VISIBLE
                 mResultState!!.setImageResource(R.drawable.ic_notrooted)
             }
-
             CH_STATE_STILL_GOING -> mResultState!!.visibility = View.INVISIBLE
-
             CH_STATE_UNCHECKED -> mResultState!!.visibility = View.INVISIBLE
-
             CH_STATE_CHECKED_ERROR -> mResultState!!.visibility = View.INVISIBLE
-
             else -> throw IllegalStateException("Unknown state of the result")
         }
-
     }
-
 }

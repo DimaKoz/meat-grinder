@@ -1,7 +1,5 @@
 package com.kozhevin.rootchecks.constant
 
-
-
 object GeneralConst {
 
     const val CH_TYPE_UNKNOWN = 0
@@ -26,4 +24,5 @@ object GeneralConst {
     const val CH_STATE_CHECKED_ERROR = 40
 
     const val GITHUB = "https://github.com/DimaKoz/meat-grinder"
+    const val ITEM_CHECK_RESULT = 10
 }

@@ -2,7 +2,6 @@ package com.kozhevin.rootchecks.util
 
 import android.os.AsyncTask
 
-import com.kozhevin.rootchecks.BuildConfig
 import com.kozhevin.rootchecks.constant.GeneralConst
 import com.kozhevin.rootchecks.data.CheckInfo
 import com.kozhevin.rootchecks.data.TotalResult
@@ -22,42 +21,22 @@ import com.kozhevin.rootchecks.constant.GeneralConst.CH_TYPE_RESETPROP
 import com.kozhevin.rootchecks.constant.GeneralConst.CH_TYPE_SUPER_USER_APK
 import com.kozhevin.rootchecks.constant.GeneralConst.CH_TYPE_SU_BINARY
 import com.kozhevin.rootchecks.constant.GeneralConst.CH_TYPE_SU_EXISTS
+import com.kozhevin.rootchecks.constant.GeneralConst.CH_TYPE_TEST_KEYS
 import com.kozhevin.rootchecks.constant.GeneralConst.CH_TYPE_WRONG_PATH_PERMITION
 import com.kozhevin.rootchecks.constant.GeneralConst.CH_TYPE_XPOSED
 
-
-class CheckTask(private var mListener: IChecksResultListener?, private val mIsEmptyResult: Boolean) : AsyncTask<Void, TotalResult, TotalResult>() {
+class CheckTask(
+    private var mListener: IChecksResultListener?,
+    private val mIsEmptyResult: Boolean
+) : AsyncTask<Void, TotalResult, TotalResult>() {
 
     override fun doInBackground(objects: Array<Void>): TotalResult? {
-        var totalResult: TotalResult? = null
-
+        var totalResult: TotalResult?
         val list = ArrayList<CheckInfo>()
-        var checkInfo = CheckInfo(null, GeneralConst.CH_TYPE_TEST_KEYS)
-        list.add(checkInfo)
-        checkInfo = CheckInfo(null, GeneralConst.CH_TYPE_DEV_KEYS)
-        list.add(checkInfo)
-        checkInfo = CheckInfo(null, GeneralConst.CH_TYPE_NON_RELEASE_KEYS)
-        list.add(checkInfo)
-        checkInfo = CheckInfo(null, GeneralConst.CH_TYPE_DANGEROUS_PROPS)
-        list.add(checkInfo)
-        checkInfo = CheckInfo(null, GeneralConst.CH_TYPE_PERMISSIVE_SELINUX)
-        list.add(checkInfo)
-        checkInfo = CheckInfo(null, GeneralConst.CH_TYPE_SU_EXISTS)
-        list.add(checkInfo)
-        checkInfo = CheckInfo(null, GeneralConst.CH_TYPE_SUPER_USER_APK)
-        list.add(checkInfo)
-        checkInfo = CheckInfo(null, GeneralConst.CH_TYPE_SU_BINARY)
-        list.add(checkInfo)
-        checkInfo = CheckInfo(null, GeneralConst.CH_TYPE_BUSYBOX_BINARY)
-        list.add(checkInfo)
-        checkInfo = CheckInfo(null, GeneralConst.CH_TYPE_XPOSED)
-        list.add(checkInfo)
-        checkInfo = CheckInfo(null, GeneralConst.CH_TYPE_RESETPROP)
-        list.add(checkInfo)
-        checkInfo = CheckInfo(null, GeneralConst.CH_TYPE_WRONG_PATH_PERMITION)
-        list.add(checkInfo)
-        checkInfo = CheckInfo(null, GeneralConst.CH_TYPE_HOOKS)
-        list.add(checkInfo)
+        val checks = arrayOf(CH_TYPE_TEST_KEYS, CH_TYPE_DEV_KEYS, CH_TYPE_NON_RELEASE_KEYS, CH_TYPE_DANGEROUS_PROPS, CH_TYPE_PERMISSIVE_SELINUX, CH_TYPE_SU_EXISTS, CH_TYPE_SUPER_USER_APK,CH_TYPE_SU_BINARY, CH_TYPE_BUSYBOX_BINARY, CH_TYPE_XPOSED,CH_TYPE_RESETPROP, CH_TYPE_WRONG_PATH_PERMITION, CH_TYPE_HOOKS)
+        for (item: Int in checks) {
+            list.add(CheckInfo(null, item))
+        }
         if (isCancelled) {
             mListener = null
             return null
@@ -75,39 +54,22 @@ class CheckTask(private var mListener: IChecksResultListener?, private val mIsEm
                     mListener = null
                     return null
                 }
-                try {
-                    Thread.sleep(150)
-                } catch (e: InterruptedException) {
-                    if (BuildConfig.DEBUG) {
-                        e.printStackTrace()
-                    }
-                }
-
-                val type = item.typeCheck
-                when (type) {
-                    GeneralConst.CH_TYPE_TEST_KEYS -> item.state = MeatGrinder.instance.isDetectedTestKeys
+                try { /* Delay for UI only, feel free to remove it*/
+                    Thread.sleep(30)
+                } catch (e: InterruptedException) { /*do nothing*/ }
+                when (item.typeCheck) {
+                    CH_TYPE_TEST_KEYS -> item.state = MeatGrinder.instance.isDetectedTestKeys
                     CH_TYPE_DEV_KEYS -> item.state = MeatGrinder.instance.isDetectedDevKeys
-
                     CH_TYPE_NON_RELEASE_KEYS -> item.state = MeatGrinder.instance.isNotFoundReleaseKeys
-
                     CH_TYPE_DANGEROUS_PROPS -> item.state = MeatGrinder.instance.isFoundDangerousProps
-
                     CH_TYPE_PERMISSIVE_SELINUX -> item.state = MeatGrinder.instance.isPermissiveSelinux
-
                     CH_TYPE_SU_EXISTS -> item.state = MeatGrinder.instance.isSuExists
-
                     CH_TYPE_SUPER_USER_APK -> item.state = MeatGrinder.instance.isAccessedSuperuserApk
-
                     CH_TYPE_SU_BINARY -> item.state = MeatGrinder.instance.isFoundSuBinary
-
                     CH_TYPE_BUSYBOX_BINARY -> item.state = MeatGrinder.instance.isFoundBusyboxBinary
-
                     CH_TYPE_XPOSED -> item.state = MeatGrinder.instance.isFoundXposed
-
                     CH_TYPE_RESETPROP -> item.state = MeatGrinder.instance.isFoundResetprop
-
                     CH_TYPE_WRONG_PATH_PERMITION -> item.state = MeatGrinder.instance.isFoundWrongPathPermission
-
                     CH_TYPE_HOOKS -> item.state = MeatGrinder.instance.isFoundHooks
                 }
                 if (item.state != null && item.state === java.lang.Boolean.TRUE && !isFoundRoot) {

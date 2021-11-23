@@ -1,7 +1,5 @@
 apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
-apply plugin: 'jacoco-android'
 
 repositories {
     maven { url 'https://maven.google.com' }
@@ -17,7 +15,6 @@ android {
         targetSdkVersion project.ext.targetSdkVersion
         versionCode 2
         versionName "1.0.1"
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         ndk {
             abiFilters 'x86', 'x86_64', 'armeabi-v7a', 'arm64-v8a'
         }
@@ -27,7 +24,6 @@ android {
                         '-DANDROID_TOOLCHAIN=clang'
             }
         }
-
     }
     buildTypes {
         release {
@@ -46,33 +42,7 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestImplementation('androidx.test.espresso:espresso-core:3.1.0', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-
-    })
-    androidTestImplementation('androidx.test.ext:junit:1.1.1', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-
-    })
-    androidTestImplementation('androidx.test.espresso:espresso-contrib:3.1.0') {
-        // Necessary to avoid version conflicts
-        exclude group: 'com.android.support', module: 'appcompat'
-        exclude group: 'com.android.support', module: 'support-v4'
-        exclude group: 'com.android.support', module: 'support-annotations'
-        exclude group: 'com.android.support', module: 'transition'
-        exclude group: 'com.android.support', module: 'recyclerview-v7'
-        exclude group: 'com.android.support', module: 'support-compat'
-        exclude group: 'com.android.support', module: 'design'
-    }
-    androidTestImplementation('androidx.test.espresso:espresso-intents:3.1.0', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-
-    })
-    implementation "com.google.android.material:material:1.0.0"
-    testImplementation 'junit:junit:4.12'
-    testImplementation 'org.mockito:mockito-core:1.10.19'
-    compile "androidx.core:core-ktx:+"
+    implementation "com.google.android.material:material:1.4.0"
+    implementation "androidx.core:core-ktx:1.6.0"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-
 }

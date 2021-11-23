@@ -1,27 +1,18 @@
 package com.kozhevin.rootchecks.util
 
-
 import com.kozhevin.rootchecks.BuildConfig
 
 class MeatGrinder private constructor() {
 
     val isLibraryLoaded: Boolean
         get() {
-            if (isLoaded) {
-                return true
-            }
+            if (isLoaded) { return true }
             try {
-                if (isUnderTest) {
-                    throw UnsatisfiedLinkError("under test")
-                }
                 System.loadLibrary(LIB_NAME)
                 isLoaded = true
             } catch (e: UnsatisfiedLinkError) {
-                if (BuildConfig.DEBUG) {
-                    e.printStackTrace()
-                }
+                if (BuildConfig.DEBUG) { e.printStackTrace() }
             }
-
             return isLoaded
         }
 
@@ -71,7 +62,6 @@ class MeatGrinder private constructor() {
     companion object {
         private val LIB_NAME = "native-lib"
         private var isLoaded: Boolean = false
-        private val isUnderTest = false
 
         val instance: MeatGrinder
             get() = InstanceHolder.INSTANCE
