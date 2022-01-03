@@ -36,9 +36,7 @@ The following devices are known have the busybox binary on the stock rom:
 
 ### Sample app
 
-The sample app is published on Google play.
-
-<a href="https://play.google.com/store/apps/details?id=com.kozhevin.rootchecks"><img width="200" alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png" /></a>
+The sample app is ![here](https://github.com/DimaKoz/meat-grinder/blob/master/apk/NativeRootChecker_1_0_0.apk)&nbsp;
 
 <img width="200" alt="screenshot" src="./art/demo.gif">
 
